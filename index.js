@@ -14,9 +14,9 @@ function getAxiosConfig(options, destination, connectivity) {
 
 	if (connectivity) {
 		config.proxy = connectivity.proxy;
-		config.headers = {
+		config.headers = Object.assign(config.headers || {}, {
 			"Proxy-Authorization": connectivity.headers["Proxy-Authorization"]
-		};
+		});
 	}
 
 	if (process.env.DEBUG === "true") {
