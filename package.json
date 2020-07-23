@@ -1,0 +1,33 @@
+{
+  "name": "cdse",
+  "version": "1.0.0",
+  "description": "CDS Extension for External Service Consumption",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jcailan/cdse.git"
+  },
+  "keywords": [
+    "sap",
+    "cap",
+    "cds",
+    "axios"
+  ],
+  "author": "Jhodel Cailan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jcailan/cdse/issues"
+  },
+  "homepage": "https://github.com/jcailan/cdse#readme",
+  "dependencies": {
+    "@sap/cds": "^3.34.2",
+    "axios": "^0.19.2",
+    "sap-cf-destconn": "0.0.19"
+  },
+  "devDependencies": {
+    "eslint": "^7.5.0"
+  }
+}
