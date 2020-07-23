@@ -33,7 +33,8 @@ class Destination {
 	run(options) {
 		return new Promise((resolve, reject) => {
 			if (this.credentials.ProxyType === "OnPremise") {
-				readConnectivity()
+				const locationId = (this.credentials.CloudConnectorLocationId) ? this.credentials.CloudConnectorLocationId : null;
+				readConnectivity(locationId)
 					.then(connectivityConfig => {
 						axios(getAxiosConfig(options, this.credentials, connectivityConfig))
 							.then(results => {
