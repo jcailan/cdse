@@ -25,48 +25,59 @@ function getAxiosConfig(options, destination, connectivity) {
 
 class Destination {
 	constructor (credentials) {
+		if (credentials.Authentication !== "NoAuthentication" && credentials.Authentication !== "BasicAuthentication") {
+			throw new Error(`CDSE: Authentication Type ${credentials.Authentication} is not supported!`);
+		}
 		this.credentials = credentials;
 	}
 
 	run(options) {
 		return new Promise((resolve, reject) => {
-			if (this.credentials.ProxyType === "OnPremise") {
-				const locationId = (this.credentials.CloudConnectorLocationId) ? this.credentials.CloudConnectorLocationId : null;
-				readConnectivity(locationId)
-					.then(connectivityConfig => {
-						axios(getAxiosConfig(options, this.credentials, connectivityConfig))
-							.then(results => {
-								if (process.env.DEBUG === "true") {
-									console.log(results.data);
-								}
-								resolve(results.data);
-							})
-							.catch(error => {
-								if (process.env.DEBUG === "true") {
-									console.error(error.message);
-									console.error(error.response.data);
-								}
-								reject(error);
-							});
-					})
-					.catch(error => {
-						reject(error);
-					});
-			} else {
-				axios(getAxiosConfig(options, this.credentials))
-					.then(results => {
-						if (process.env.DEBUG === "true") {
-							console.log(results.data);
-						}
-						resolve(results.data);
-					})
-					.catch(error => {
-						if (process.env.DEBUG === "true") {
-							console.error(error.message);
-							console.error(error.response.data);
-						}
-						reject(error);
-					});
+			const locationId = (this.credentials.CloudConnectorLocationId) ? this.credentials.CloudConnectorLocationId : null;
+
+			switch (this.credentials.ProxyType) {
+				case "OnPremise":
+					readConnectivity(locationId)
+						.then(connectivityConfig => {
+							axios(getAxiosConfig(options, this.credentials, connectivityConfig))
+								.then(results => {
+									if (process.env.DEBUG === "true") {
+										console.log(results.data);
+									}
+									resolve(results.data);
+								})
+								.catch(error => {
+									if (process.env.DEBUG === "true") {
+										console.error(error.message);
+										console.error(error.response.data);
+									}
+									reject(error);
+								});
+						})
+						.catch(error => {
+							reject(error);
+						});
+					break;
+
+				case "Internet":
+					axios(getAxiosConfig(options, this.credentials))
+						.then(results => {
+							if (process.env.DEBUG === "true") {
+								console.log(results.data);
+							}
+							resolve(results.data);
+						})
+						.catch(error => {
+							if (process.env.DEBUG === "true") {
+								console.error(error.message);
+								console.error(error.response.data);
+							}
+							reject(error);
+						});
+					break;
+
+				default:
+					throw new Error(`CDSE: Proxy Type ${this.credentials.ProxyType} is not supported!`);
 			}
 		});
 	}
@@ -76,11 +87,11 @@ function to(destination) {
 	return new Promise((resolve, reject) => {
 		const config = cds.env.requires[destination];
 		if (!config) {
-			reject(new Error(`Missing destination configuration for ${destination}`));
+			reject(new Error(`CDSE: Missing destination configuration for ${destination}!`));
 		}
 
 		if (!config.credentials) {
-			resolve();
+			reject(new Error("CDSE: External service configuration without credentials is not supported!"));
 		}
 
 		if (config.credentials.destination) {
@@ -92,7 +103,7 @@ function to(destination) {
 		} else if (config.credentials.url) {
 			resolve(new Destination(config.credentials));
 		} else {
-			reject(new Error(`Missing credentials configuration for destination ${destination}`));
+			reject(new Error(`CDSE: Missing credentials configuration for destination ${destination}`));
 		}
 	});
 }
