@@ -25,7 +25,7 @@ function getAxiosConfig(options, destination, connectivity) {
 
 class Destination {
 	constructor (credentials) {
-		if (credentials.Authentication !== "NoAuthentication" && credentials.Authentication !== "BasicAuthentication") {
+		if (credentials.url === undefined && credentials.Authentication !== "NoAuthentication" && credentials.Authentication !== "BasicAuthentication") {
 			throw new Error(`CDSE: Authentication Type ${credentials.Authentication} is not supported!`);
 		}
 		this.credentials = credentials;
@@ -59,6 +59,7 @@ class Destination {
 						});
 					break;
 
+				case undefined:
 				case "Internet":
 					axios(getAxiosConfig(options, this.credentials))
 						.then(results => {
