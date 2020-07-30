@@ -34,4 +34,15 @@ result = await service.run({
 		ProductName: "Milk"
 	}
 });
+
+// HTTP POST with X-CSRF-Token protection
+result = await service.run({
+	url: "/Products",
+	method: "post",
+	data: {
+		ID: 1234,
+		ProductName: "Milk"
+	},
+	csrfProtection: true
+});
 ```
