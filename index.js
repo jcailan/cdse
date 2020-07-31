@@ -9,7 +9,8 @@ function getConfigForTokenFetch(config) {
 		baseURL: config.baseURL,
 		method: "HEAD",
 		headers: Object.assign(config.headers || {}, {
-			"x-csrf-token": "Fetch"
+			"x-csrf-token": "Fetch",
+			"Connection": "keep-alive"
 		}),
 		auth: Object.assign({}, config.auth)
 	};
@@ -47,8 +48,14 @@ function getAxiosConfig(options, destination, connectivity) {
 		} else {
 			axios(getConfigForTokenFetch(config))
 				.then(results => {
+					const { headers } = results;
 					config.headers = config.headers || {};
-					config.headers["x-csrf-token"] = results.headers["x-csrf-token"];
+					config.headers["x-csrf-token"] = headers["x-csrf-token"];
+
+					const cookies = headers["set-cookie"];
+					if (cookies) {
+						config.headers.Cookie = cookies.join("; ");
+					}
 
 					if (process.env.DEBUG === "true") {
 						console.log(config);
