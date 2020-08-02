@@ -4,7 +4,7 @@
 	"description": "CDS Extension for External Service Consumption",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\""
+		"test": "mocha"
 	},
 	"repository": {
 		"type": "git",
@@ -28,6 +28,9 @@
 		"sap-cf-destconn": "0.0.19"
 	},
 	"devDependencies": {
-		"eslint": "^7.5.0"
+		"axios-mock-adapter": "^1.18.2",
+		"eslint": "^7.5.0",
+		"lodash": "^4.17.19",
+		"mocha": "^8.1.0"
 	}
 }

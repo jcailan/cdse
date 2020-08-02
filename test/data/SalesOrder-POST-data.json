@@ -1,0 +1,10 @@
+{
+	"Note": "Test Create SO",
+	"NoteLanguage": "EN",
+	"CustomerID": "0100000000",
+	"CustomerName": "SAP",
+	"CurrencyCode": "EUR",
+	"GrossAmount": "25867.03",
+	"NetAmount": "21737.00",
+	"TaxAmount": "4130.03"
+}

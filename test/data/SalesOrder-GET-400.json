@@ -1,0 +1,33 @@
+{
+	"error": {
+		"code": "/IWBEP/GWS/012",
+		"message": {
+			"lang": "en",
+			"value": "Sales Order with key '1500000000' does not exist"
+		},
+		"innererror": {
+			"application": {
+				"component_id": "OPU-BSE-SDE",
+				"service_namespace": "/IWBEP/",
+				"service_id": "GWSAMPLE_BASIC",
+				"service_version": "0001"
+			},
+			"transactionid": "64EA560C85A30060E005F19472790723",
+			"timestamp": "",
+			"Error_Resolution": {
+				"SAP_Transaction": "",
+				"SAP_Note": "See SAP Note 1797736 for error analysis (https://service.sap.com/sap/support/notes/1797736)"
+			},
+			"errordetails": [
+				{
+					"code": "/IWBEP/CX_MGW_BUSI_EXCEPTION",
+					"message": "Sales Order with key '1500000000' does not exist",
+					"propertyref": "",
+					"severity": "error",
+					"transition": false,
+					"target": ""
+				}
+			]
+		}
+	}
+}

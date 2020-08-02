@@ -1,0 +1,23 @@
+{
+	"d": {
+		"SalesOrderID": "0500000035",
+		"Note": "Test Create SO",
+		"NoteLanguage": "EN",
+		"CustomerID": "0100000000",
+		"CustomerName": "SAP",
+		"CurrencyCode": "EUR",
+		"GrossAmount": "0.00",
+		"NetAmount": "0.00",
+		"TaxAmount": "0.00",
+		"LifecycleStatus": "N",
+		"LifecycleStatusDescription": "New",
+		"BillingStatus": "",
+		"BillingStatusDescription": "Initial",
+		"DeliveryStatus": "",
+		"DeliveryStatusDescription": "Initial",
+		"CreatedAt": "\/Date(1596289489536)\/",
+		"ChangedAt": "\/Date(1596289489536)\/",
+		"ToBusinessPartner": {},
+		"ToLineItems": {}
+	}
+}

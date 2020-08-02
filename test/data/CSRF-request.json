@@ -1,0 +1,4 @@
+{
+	"x-csrf-token": "test",
+	"Cookie": "first cookie; second cookie"
+}
