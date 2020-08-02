@@ -1,4 +1,6 @@
-# CDS Extension for External Service Consumption
+# CDSE Node Module [![Build Status](https://travis-ci.com/jcailan/cdse.svg?branch=master)](https://travis-ci.com/jcailan/cdse)
+
+## CDS Extension for External Service Consumption
 
 This node module provides an alternative solution for consuming external services in a Cloud Application Programming (CAP) Model where the users can use the raw capabilities of **axios** node module while still utilizing the following capabilites of CAP framework:
 - Fluent api concept
