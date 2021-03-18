@@ -29,10 +29,12 @@ function getAxiosConfig(options, destination, connectivity) {
 	return new Promise((resolve, reject) => {
 		const config = Object.assign({}, options);
 		config.baseURL = destination.URL || destination.url;
-		config.auth = {
-			username: destination.User || destination.username,
-			password: destination.Password || destination.password
-		};
+		if (destination.User || destination.username) {
+			config.auth = {
+				username: destination.User || destination.username,
+				password: destination.Password || destination.password
+			};
+		}	
 
 		if (connectivity) {
 			config.proxy = connectivity.proxy;
