@@ -1,6 +1,6 @@
 {
 	"name": "cdse",
-	"version": "1.1.2",
+	"version": "1.1.4",
 	"description": "CDS Extension for External Service Consumption",
 	"main": "index.js",
 	"scripts": {
@@ -24,7 +24,7 @@
 	"homepage": "https://github.com/jcailan/cdse#readme",
 	"dependencies": {
 		"@sap/cds": "^3.34.2",
-		"axios": "^0.19.2",
+		"axios": "^0.21.1",
 		"sap-cf-destconn": "0.0.19"
 	},
 	"devDependencies": {
