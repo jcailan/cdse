@@ -1,6 +1,6 @@
 {
 	"name": "cdse",
-	"version": "1.1.1",
+	"version": "1.1.2",
 	"description": "CDS Extension for External Service Consumption",
 	"main": "index.js",
 	"scripts": {
