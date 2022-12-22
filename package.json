@@ -23,7 +23,7 @@
 	},
 	"homepage": "https://github.com/jcailan/cdse#readme",
 	"dependencies": {
-		"@sap/cds": "^3.34.2",
+		"@sap/cds": "^6.4.0",
 		"axios": "^0.21.1",
 		"sap-cf-destconn": "0.0.19"
 	},
